@@ -51,3 +51,28 @@ h2 {
 .dropdown-toggle {
   border: 0px solid black !important;
 }
+
+.smallimg{
+  height:200px;
+  width:100% !important;
+  border-radius: 5px !important;
+}
+
+h1{
+  font-size: 20px !important;
+}
+
+.btn{
+  background-color: black !important;
+  color: white;
+  box-shadow: none !important;
+  margin-right: 10px;
+  border-color: black;
+}
+
+.bs{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 20px !important;
+}

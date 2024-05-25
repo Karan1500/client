@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import {BrowserRouter as Router,Route,Routes, BrowserRouter} from 'react-router-dom'
 import Login from './screens/Login';
 import Register from './screens/Register';
-import Home from './screens/Home';
+import Homescreen from './screens/Homescreen';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Navbar />
       <Router>
         <Routes>
-          <Route path="/home" Component={Home}/>
+          <Route path="/home" exact Component={Homescreen}/>
           <Route path="/login" Component={Login}/>
           <Route path="/register" Component={Register}/>
         </Routes>
