@@ -14,7 +14,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/home" Component={Homescreen}/>
-          <Route path='/book/:roomid' Component={Bookingscreen}/>
+          <Route path='/book/:roomid/:fromDate/:toDate' Component={Bookingscreen}/>
           <Route path="/login" Component={Login}/>
           <Route path="/register" Component={Register}/>
         </Routes>
