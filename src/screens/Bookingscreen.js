@@ -4,25 +4,27 @@ import { useParams } from 'react-router-dom';
 
 function Bookingscreen() {
     let { roomid } = useParams(); // Destructure the roomid from the useParams object
-    console.log(roomid); // roomid should now be a string or undefined
+    // console.log(roomid); // roomid should now be a string or undefined
 
     const [rooms, setroom] = useState();
     const [loading, setloading] = useState();
     const [error, seterror] = useState();
 
-    async function fetchData() {
-        try {
-            setloading(true);
-            const data = (await axios.post("http://localhost:5000/api/rooms/getroombyid", {roomid: matchMedia.params.roomid})).data;
-            setroom(data);
-            setloading(false);
-        } catch (error) {
-            seterror(true);
-            console.log(error);
-            setloading(false);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                setloading(true);
+                const data = (await axios.post("http://localhost:5000/api/rooms/getroombyid", {roomid: roomid})).data;
+                setroom(data);
+                setloading(false);
+            } catch (error) {
+                seterror(true);
+                console.log(error);
+                setloading(false);
+            }
         }
-    }
-    fetchData();
+        fetchData();
+      }, []); 
 
     return (
         <div>
