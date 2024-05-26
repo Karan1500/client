@@ -22,7 +22,7 @@ function Room({room, fromDate, toDate}){
                 <b>
                     <p>Max Count: {room.maxCount}</p>
                     <p>Phone Number: {room.phoneNumber}</p>
-                    <p>Room Type: {room.Type}</p>
+                    <p>Room Type: {room.type}</p>
                 </b>
 
                 <div style={{float: 'right'}}>
