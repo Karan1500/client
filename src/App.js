@@ -5,6 +5,7 @@ import {BrowserRouter as Router,Route,Routes, BrowserRouter} from 'react-router-
 import Login from './screens/Login';
 import Register from './screens/Register';
 import Homescreen from './screens/Homescreen';
+import Bookingscreen from './screens/Bookingscreen';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Navbar />
       <Router>
         <Routes>
-          <Route path="/home" exact Component={Homescreen}/>
+          <Route path="/home" Component={Homescreen}/>
+          <Route path='/book/:roomid' Component={Bookingscreen}/>
           <Route path="/login" Component={Login}/>
           <Route path="/register" Component={Register}/>
         </Routes>
