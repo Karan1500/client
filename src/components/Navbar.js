@@ -24,7 +24,7 @@ function Navbar() {
                                     {user.data.name}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Bookings</a>
+                                    <a class="dropdown-item" href="/profile">Profile</a>
                                     <a class="dropdown-item" href="#" onClick={logout}>Logout</a>
                                 </div>
                             </div></>) : (<>
