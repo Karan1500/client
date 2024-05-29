@@ -16,6 +16,9 @@ function Bookingscreen() {
     const totalDays = moment.duration(moment(toDate,'DD-MM-YYYY').diff(moment(fromDate,'DD-MM-YYYY'))).asDays()+1
     const [totalAmount,setTotalAmount] = useState()
     useEffect(() => {
+        if(!localStorage.getItem('currentUser')){
+            window.location.reload='/login'
+        }
         async function fetchData() {
             try {
                 setloading(true);
