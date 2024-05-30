@@ -36,7 +36,6 @@ function Bookingscreen() {
     
 
       const wrapperFunction = () => {
-        bookRoom();
         checkoutHandler(totalAmount);
     }
     
@@ -57,11 +56,13 @@ function Bookingscreen() {
                 description: "Test Transaction", 
                 image: "",
                 order_id: order.id, 
-                // callback_url: "",
-                "handler": function (response){
-                    alert(response.razorpay_payment_id);
-                    alert(response.razorpay_order_id);
-                    alert(response.razorpay_signature)
+                // callback_url: "http://localhost:5000/api/payment/paymentverification",
+                handler: function (response){
+                    // alert(response.razorpay_payment_id);
+                    // alert(response.razorpay_order_id);
+                    // alert(response.razorpay_signature)
+                    bookRoom();
+                    window.location.href = "/home";
                 },            
                 prefill: { 
                     name: "Gaurav Kumar", 
