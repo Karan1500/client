@@ -6,8 +6,7 @@ import Error from '../components/Error';
 import moment from 'moment'
 
 function Bookingscreen() {
-    let { roomid,fromDate,toDate } = useParams(); // Destructure the roomid from the useParams object
-    // console.log(roomid); // roomid should now be a string or undefined
+    let { roomid,fromDate,toDate } = useParams(); 
 
     const [room, setroom] = useState();
     const [loading, setloading] = useState(true);
@@ -33,8 +32,57 @@ function Bookingscreen() {
             }
         }
         fetchData();
-      }, []); 
+      }, []);
     
+
+      const wrapperFunction = () => {
+        bookRoom();
+        checkoutHandler(totalAmount);
+    }
+    
+    const checkoutHandler = async (amount) => {
+
+        try {
+            const {data: {key}} = await axios.get("http://localhost:5000/api/getkey");
+
+            const {data:{order}} = await axios.post("http://localhost:5000/api/payment/checkout", {
+                amount
+            });
+
+            const options = {
+                key: key,
+                amount: order.amount,
+                currency: "INR",
+                name: "Karan Jivanramjiwala", 
+                description: "Test Transaction", 
+                image: "",
+                order_id: order.id, 
+                // callback_url: "",
+                "handler": function (response){
+                    alert(response.razorpay_payment_id);
+                    alert(response.razorpay_order_id);
+                    alert(response.razorpay_signature)
+                },            
+                prefill: { 
+                    name: "Gaurav Kumar", 
+                    email: "gaurav.kumar@example.com", 
+                    contact: "9000090000"  
+                },
+                notes: {
+                    address: "Razorpay Corporate Office"
+                },
+                theme: {
+                    color: "#000000"
+                }
+            };
+            var razor = new window.Razorpay(options);
+            razor.open();
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     async function bookRoom() {
         const bookingDetails = {
             room,
@@ -81,7 +129,7 @@ function Bookingscreen() {
                             </b>
                         </div>
                         <div style={{float: 'right'}}>
-                            <button className='btn btn-primary' onClick={bookRoom}>Pay Now</button>
+                            <button className='btn btn-primary' onClick={wrapperFunction}>Pay Now</button>
                         </div>
                     </div>
                 </div>
